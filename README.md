@@ -1,6 +1,6 @@
 # CapybaraEmail #
 
-Easily test your ActionMailer emails in your Capybara integration tests.
+Easily test ActionMailer and Mail emails in your Capybara integration tests
 
 ## Installation ##
 
@@ -23,7 +23,7 @@ Or install it yourself as:
 
 feature 'Emailer' do
   background do
-    # will clear the ActionMailer queue
+    # will clear the mail queue
     clear_emails
     visit email_trigger_path
     # Will find an email sent to test@example.com

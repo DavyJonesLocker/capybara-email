@@ -7,20 +7,51 @@ feature 'Integration test' do
   end
 
   scenario 'html email' do
-    deliver(html_email)
-    open_email('test@example.com')
+    email = deliver(html_email)
+
+		open_email('test@example.com')
     current_email.click_link 'example'
     page.should have_content 'Hello world!'
     current_email.should have_content 'This is only a html test'
+		
+		all_emails.first.should == email
+		
+		clear_emails()
+		all_emails.should be_empty
+
   end
 
   scenario 'plain text email' do
-    deliver(plain_email)
+    email = deliver(plain_email)
+
     open_email('test@example.com')
     current_email.click_link 'http://example.com'
     page.should have_content 'Hello world!'
     current_email.should have_content 'This is only a plain test.'
+
+		all_emails.first.should == email
+		
+		clear_emails()
+		all_emails.should be_empty
   end
+
+	scenario 'via ActionMailer' do
+		email = deliver(plain_email)
+
+		all_emails.first.should == email
+
+		clear_emails
+		all_emails.should be_empty
+	end
+
+	scenario 'via Mail' do
+		email = plain_email.deliver!
+
+		all_emails.first.should == email
+		
+		clear_emails
+		all_emails.should be_empty
+	end
 end
 
 class TestApp
@@ -31,6 +62,7 @@ end
 
 def deliver(email)
   ActionMailer::Base.deliveries << email
+	email
 end
 
 def html_email
