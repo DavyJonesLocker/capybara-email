@@ -1,0 +1,6 @@
+require 'rspec'
+require 'action_mailer'
+require 'capybara/rspec'
+require 'capybara/email/rspec'
+require 'capybara/spec/driver'
+require 'pry-nav'
