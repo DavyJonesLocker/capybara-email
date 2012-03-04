@@ -4,6 +4,7 @@ module Capybara
   end
 
   module Email
+    autoload :DSL,      'capybara/email/dsl'
     autoload :Node,     'capybara/email/node'
     autoload :Driver,   'capybara/email/driver'
     autoload :Version,  'capybara/email/version'

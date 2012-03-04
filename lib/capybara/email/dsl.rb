@@ -1,4 +1,4 @@
-module Capybara::Email::RSpecHelpers
+module Capybara::Email::DSL
 
   # Returns the currently set email.
   # If no email set will return nil.

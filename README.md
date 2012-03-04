@@ -1,12 +1,14 @@
 # CapybaraEmail #
 
-Easily test ActionMailer and Mail emails in your Capybara integration tests
+Easily test [ActionMailer](https://github.com/rails/rails/tree/master/actionmailer) and [Mail](https://github.com/mikel/mail) messages in your Capybara integration tests
 
 ## Installation ##
 
 Add this line to your application's Gemfile:
 
-    gem 'capybara-email'
+```ruby
+gem 'capybara-email'
+```
 
 And then execute:
 
@@ -18,16 +20,20 @@ Or install it yourself as:
 
 ## Usage ##
 
-```ruby
-# rspec example
+### RSpec ###
 
+Require `capybara/email/rspec` in your `spec_helper`
+
+Example:
+
+```ruby
 feature 'Emailer' do
   background do
-    # will clear the mail queue
+    # will clear the message queue
     clear_emails
     visit email_trigger_path
     # Will find an email sent to test@example.com
-    # and set the `current_email` helper
+    # and set `current_email`
     open_email('test@example.com')
   end
 
@@ -41,6 +47,46 @@ feature 'Emailer' do
   end
 
   scenario 'view the email body in your browser' do
+    # the `launchy` gem is required
+    current_email.save_and_open
+  end
+end
+```
+
+### Test::Unit ###
+
+Include `Capybara::Email::DSL` in your test class
+
+```ruby
+class ActionController::IntegrationTest
+  include Capybara::Email::DSL
+end
+```
+
+Example:
+
+```ruby
+class EmailTriggerControllerTest < ActionController::IntegrationTest
+  def setup
+    # will clear the message queue
+    clear_emails
+    visit email_trigger_path
+
+    # Will find an email sent to `test@example.com`
+    # and set `current_email`
+    open_email('test@example.com')
+  end
+
+  test 'following a link' do
+    current_email.click_link 'your profile'
+    page.should have_content 'Profile page'
+  end
+
+  test 'testing for content' do
+    current_email.should have_content 'Hello Joe!'
+  end
+
+  test 'view the email body in your browser' do
     # the `launchy` gem is required
     current_email.save_and_open
   end
