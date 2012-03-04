@@ -2,7 +2,7 @@ module Capybara::Email::RSpecHelpers
   attr_accessor :current_email, :current_emails
 
   def all_emails
-    ActionMailer::Base.deliveries
+		Mail::TestMailer.deliveries
   end
 
   def emails_sent_to(recipient)
