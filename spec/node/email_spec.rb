@@ -57,4 +57,16 @@ describe Capybara::Node::Email do
       email.from.should include 'test@example.com'
     end
   end
+
+  describe '#save_and_open' do
+    before do
+      message.body = 'Test message'
+      ::Capybara.stubs(:save_and_open_page)
+    end
+
+    it 'delegates to Capybara.save_and_open_page' do
+      email.save_and_open
+      Capybara.should have_received(:save_and_open_page)
+    end
+  end
 end

@@ -16,4 +16,8 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.from
   end
 
+  def save_and_open
+    ::Capybara.save_and_open_page(body)
+  end
+
 end
