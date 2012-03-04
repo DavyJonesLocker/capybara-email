@@ -13,6 +13,18 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     dom.to_xml
   end
 
+  def subject
+    email.subject
+  end
+
+  def to
+    emai.to
+  end
+
+  def from
+    email.from
+  end
+
   def dom
     @dom ||= Nokogiri::HTML(source)
   end
