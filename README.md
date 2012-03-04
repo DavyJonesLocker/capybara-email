@@ -39,6 +39,11 @@ feature 'Emailer' do
   scenario 'testing for content' do
     current_email.should have_content 'Hello Joe!'
   end
+
+  scenario 'view the email body in your browser' do
+    # the `launchy` gem is required
+    current_email.save_and_open
+  end
 end
 ```
 
