@@ -1,9 +1,15 @@
 require 'spec_helper'
 
+class TestApp
+  def self.call(env)
+    [200, {"Content-Type" => "text/plain"}, ["Hello world!"]]
+  end
+end
+
 feature 'Integration test' do
   background do
     clear_email
-    Capybara.app = TestApp
+    Capybara.app = ::TestApp
   end
 
   scenario 'html email' do
@@ -52,12 +58,6 @@ feature 'Integration test' do
 		clear_emails
 		all_emails.should be_empty
 	end
-end
-
-class TestApp
-  def self.call(env)
-    [200, {"Content-Type" => "text/plain"}, ["Hello world!"]]
-  end
 end
 
 def deliver(email)
