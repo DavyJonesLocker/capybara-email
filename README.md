@@ -26,16 +26,17 @@ feature 'Emailer' do
     # will clear the ActionMailer queue
     clear_emails
     visit email_trigger_path
+    # Will find a email sent to test@example.com
+    # and set the `current_email` helper
+    open_email('test@example.com')
   end
 
   scenario 'following a link' do
-    open_email('test@example.com')
     current_email.click_link 'your profile'
     page.should have_content 'Profile page'
   end
 
   scenario 'testing for content' do
-    open_email('test@example.com')
     current_email.should have_content 'Hello Joe!'
   end
 end
