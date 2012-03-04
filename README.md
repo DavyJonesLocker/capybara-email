@@ -1,6 +1,6 @@
 # CapybaraEmail #
 
-Easy test your ActionMail emails in your Capybara integration tests
+Easily test your ActionMailer emails in your Capybara integration tests.
 
 ## Installation ##
 
@@ -26,7 +26,7 @@ feature 'Emailer' do
     # will clear the ActionMailer queue
     clear_emails
     visit email_trigger_path
-    # Will find a email sent to test@example.com
+    # Will find an email sent to test@example.com
     # and set the `current_email` helper
     open_email('test@example.com')
   end
@@ -57,7 +57,7 @@ pull requests to specific branches rather than master.
 
 Please make sure you include tests!
 
-Unles Rails drops support for Ruby 1.8.7 we will continue to use the
+Unless Rails drops support for Ruby 1.8.7 we will continue to use the
 hash-rocket syntax. Please respect this.
 
 Don't use tabs to indent, two spaces are the standard.
