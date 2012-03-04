@@ -8,7 +8,7 @@ module Capybara::Email::RSpecHelpers
   def emails_sent_to(recipient)
     self.current_emails = all_emails.select { |email| email.to.include?(recipient) }.map do |email|
       driver = Capybara::Email::Driver.new(email)
-      Capybara::Node::Document.new(Capybara.current_session, driver)
+      Capybara::Node::Email.new(Capybara.current_session, driver)
     end
   end
 
