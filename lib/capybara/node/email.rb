@@ -1,7 +1,7 @@
 class Capybara::Node::Email < Capybara::Node::Document
 
   def body
-    base.body
+    base.raw
   end
 
   def subject

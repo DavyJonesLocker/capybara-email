@@ -18,7 +18,7 @@ class Capybara::Email::Driver < Capybara::Driver::Base
   end
 
   def to
-    emai.to
+    email.to
   end
 
   def from
@@ -35,10 +35,14 @@ class Capybara::Email::Driver < Capybara::Driver::Base
 
   def source
     if email.mime_type == 'text/plain'
-      convert_to_html(email.body.encoded)
+      convert_to_html(raw)
     else
-      email.body.encoded
+      raw
     end
+  end
+
+  def raw
+    email.body.encoded
   end
 
   private

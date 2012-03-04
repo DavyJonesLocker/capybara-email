@@ -1,22 +1,36 @@
 require 'spec_helper'
 
 describe Capybara::Node::Email do
-  let(:message) { mock('Message') }
-  let(:email) { Capybara::Node::Email.new(nil, message) }
+  let(:message) { Mail::Message.new }
+  let(:email) { Capybara::Node::Email.new(nil, Capybara::Email::Driver.new(message)) }
 
   describe '#body' do
-    before do
-      message.stubs(:body).returns('Test message')
+    context 'html' do
+      before do
+        message.content_type = 'text/html'
+        message.body = '<a href="http://example.com">example</a>'
+      end
+
+      it 'delegates to the base' do
+        email.body.should eq '<a href="http://example.com">example</a>'
+      end
     end
 
-    it 'delegates to the base' do
-      email.body.should eq 'Test message'
+    context 'plain' do
+      before do
+        message.content_type = 'text/plain'
+        message.body = 'http://example.com'
+      end
+
+      it 'delegates to the base' do
+        email.body.should eq 'http://example.com'
+      end
     end
   end
 
   describe '#subject' do
     before do
-      message.stubs(:subject).returns('Test subject')
+      message.subject = 'Test subject'
     end
 
     it 'delegates to the base' do
@@ -26,7 +40,7 @@ describe Capybara::Node::Email do
 
   describe '#to' do
     before do
-      message.stubs(:to).returns(['test@example.com'])
+      message.to = 'test@example.com'
     end
 
     it 'delegates to the base' do
@@ -36,7 +50,7 @@ describe Capybara::Node::Email do
 
   describe '#from' do
     before do
-      message.stubs(:from).returns(['test@example.com'])
+      message.from = 'test@example.com'
     end
 
     it 'delegates to the base' do
