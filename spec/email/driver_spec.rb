@@ -22,7 +22,7 @@ feature 'Integration test' do
 
     all_emails.first.should == email
 
-    clear_emails()
+    clear_emails
     all_emails.should be_empty
 
   end
@@ -37,7 +37,7 @@ feature 'Integration test' do
 
     all_emails.first.should == email
 
-    clear_emails()
+    clear_emails
     all_emails.should be_empty
   end
 
