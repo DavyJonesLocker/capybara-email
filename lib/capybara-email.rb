@@ -1,6 +1,3 @@
-require 'capybara/email/version'
-
 module Capybara
-  module Email
-  end
+  autoload :Email, 'capybara/email'
 end
