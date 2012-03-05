@@ -8,8 +8,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Test your ActionMailer and Mailer messages in Capybara}
   gem.homepage      = 'https://github.com/dockyard/capybara-email'
 
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  gem.files         = `git ls-files`.split("\n")
+  gem.files         = `git ls-files -- {LICENSE,README.md,lib/*}`.split("\n")
   gem.test_files    = `git ls-files -- {spec}/*`.split("\n")
   gem.name          = 'capybara-email'
   gem.require_paths = ['lib']
