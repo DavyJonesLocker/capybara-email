@@ -15,15 +15,15 @@ feature 'Integration test' do
   scenario 'html email' do
     email = deliver(html_email)
 
-		open_email('test@example.com')
+    open_email('test@example.com')
     current_email.click_link 'example'
     page.should have_content 'Hello world!'
     current_email.should have_content 'This is only a html test'
-		
-		all_emails.first.should == email
-		
-		clear_emails()
-		all_emails.should be_empty
+
+    all_emails.first.should == email
+
+    clear_emails()
+    all_emails.should be_empty
 
   end
 
@@ -35,34 +35,34 @@ feature 'Integration test' do
     page.should have_content 'Hello world!'
     current_email.should have_content 'This is only a plain test.'
 
-		all_emails.first.should == email
-		
-		clear_emails()
-		all_emails.should be_empty
+    all_emails.first.should == email
+
+    clear_emails()
+    all_emails.should be_empty
   end
 
-	scenario 'via ActionMailer' do
-		email = deliver(plain_email)
+  scenario 'via ActionMailer' do
+    email = deliver(plain_email)
 
-		all_emails.first.should == email
+    all_emails.first.should == email
 
-		clear_emails
-		all_emails.should be_empty
-	end
+    clear_emails
+    all_emails.should be_empty
+  end
 
-	scenario 'via Mail' do
-		email = plain_email.deliver!
+  scenario 'via Mail' do
+    email = plain_email.deliver!
 
-		all_emails.first.should == email
-		
-		clear_emails
-		all_emails.should be_empty
-	end
+    all_emails.first.should == email
+
+    clear_emails
+    all_emails.should be_empty
+  end
 end
 
 def deliver(email)
   ActionMailer::Base.deliveries << email
-	email
+  email
 end
 
 def html_email

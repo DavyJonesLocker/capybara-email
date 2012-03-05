@@ -11,7 +11,7 @@ module Capybara::Email::DSL
   #
   # @return [Array]
   def all_emails
-		Mail::TestMailer.deliveries
+    Mail::TestMailer.deliveries
   end
 
   # Access all emails for a recipient.
