@@ -1,5 +1,7 @@
 # CapybaraEmail #
 
+[![Build Status](http://travis-ci.org/dockyard/capybara-email.png)](http://travis-ci.org/dockyard/capybara-email)
+
 Easily test [ActionMailer](https://github.com/rails/rails/tree/master/actionmailer) and [Mail](https://github.com/mikel/mail) messages in your Capybara integration tests
 
 ## Installation ##
