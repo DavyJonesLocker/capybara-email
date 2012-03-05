@@ -17,7 +17,6 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'mail'
   gem.add_development_dependency 'actionmailer'
-  gem.add_development_dependency 'sinatra'
   gem.add_development_dependency 'capybara'
   gem.add_development_dependency 'bourne'
   gem.add_development_dependency 'rspec'
