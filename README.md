@@ -24,7 +24,31 @@ Or install it yourself as:
 
 ### RSpec ###
 
-Require `capybara/email/rspec` in your `spec_helper`
+```ruby
+# spec/spec_helper.rb
+require 'capybara/rspec'
+require 'capybara/dsl'
+
+RSpec.configure do |config|
+	config.include Capybara::DSL
+end
+
+```
+
+```ruby
+# spec/any_spec.rb or less preferrably spec/spec_helper.rb
+require 'capybara/email/rspec'
+
+it 'should find one email' do
+	send_an_email!
+	all_emails.size.should == 1
+end
+```
+
+
+### Rails & RSpec ###
+
+Require `capybara/email/rails` in your `spec_helper`
 
 Example:
 
@@ -55,7 +79,7 @@ feature 'Emailer' do
 end
 ```
 
-### Test::Unit ###
+### Rails & Test::Unit ###
 
 Include `Capybara::Email::DSL` in your test class
 
