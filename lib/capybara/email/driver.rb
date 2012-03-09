@@ -5,8 +5,16 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     @email = email
   end
 
-  def follow(method, path, attributes = {})
-    Capybara.current_session.driver.visit path
+  def follow(url)
+    url = URI.parse(url)
+    url = case Capybara.current_driver
+    when :rack_test
+      url.to_s
+    else
+      Capybara.current_session.driver.send(:url, url.path)
+    end
+
+    Capybara.current_session.driver.visit url
   end
 
   def body

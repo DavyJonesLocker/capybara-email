@@ -12,7 +12,7 @@ class Capybara::Email::Node < Capybara::Driver::Node
   end
 
   def click
-    driver.follow(:get, self[:href].to_s)
+    driver.follow(self[:href].to_s)
   end
 
   def tag_name
