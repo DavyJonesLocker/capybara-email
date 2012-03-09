@@ -6,7 +6,7 @@ class Capybara::Email::Driver < Capybara::Driver::Base
   end
 
   def follow(method, path, attributes = {})
-    Capybara.current_session.driver.follow(method, path, attributes)
+    Capybara.current_session.driver.visit path
   end
 
   def body
