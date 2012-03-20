@@ -20,7 +20,7 @@ feature 'Integration test' do
     page.should have_content 'Hello world!'
     current_email.should have_content 'This is only a html test'
 
-    all_emails.first.should == email
+    all_emails.first.should eq email
 
     clear_emails
     all_emails.should be_empty
@@ -34,7 +34,7 @@ feature 'Integration test' do
     page.should have_content 'Hello world!'
     current_email.should have_content 'This is only a plain test.'
 
-    all_emails.first.should == email
+    all_emails.first.should eq email
 
     clear_emails
     all_emails.should be_empty
@@ -43,7 +43,7 @@ feature 'Integration test' do
   scenario 'via ActionMailer' do
     email = deliver(plain_email)
 
-    all_emails.first.should == email
+    all_emails.first.should eq email
 
     clear_emails
     all_emails.should be_empty
@@ -52,7 +52,7 @@ feature 'Integration test' do
   scenario 'via Mail' do
     email = plain_email.deliver!
 
-    all_emails.first.should == email
+    all_emails.first.should eq email
 
     clear_emails
     all_emails.should be_empty
