@@ -58,6 +58,13 @@ feature 'Integration test' do
     clear_emails
     all_emails.should be_empty
   end
+
+  scenario 'multiple emails' do
+    deliver(plain_email)
+    deliver(Mail::Message.new(:to => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
+    open_email('test@example.com')
+    current_email.body.should eq 'New Message'
+  end
 end
 
 def deliver(email)

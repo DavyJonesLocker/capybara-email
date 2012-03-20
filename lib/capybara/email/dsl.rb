@@ -32,7 +32,7 @@ module Capybara::Email::DSL
   #
   # @return [Mail::Message]
   def first_email_sent_to(recipient)
-    self.current_email = emails_sent_to(recipient).first
+    self.current_email = emails_sent_to(recipient).last
   end
   alias :open_email :first_email_sent_to
 
