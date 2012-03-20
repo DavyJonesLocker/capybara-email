@@ -24,7 +24,6 @@ feature 'Integration test' do
 
     clear_emails
     all_emails.should be_empty
-
   end
 
   scenario 'plain text email' do
