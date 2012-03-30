@@ -1,27 +1,27 @@
 class Capybara::Node::Email < Capybara::Node::Document
 
-  # Delgate to the email body
+  # Delegate to the email body
   #
   # @return [Mail::Message#body]
   def body
     base.raw
   end
 
-  # Delgate to the email subject
+  # Delegate to the email subject
   #
   # @return [Mail::Message#subject]
   def subject
     base.subject
   end
 
-  # Delgate to the email to
+  # Delegate to the email to
   #
   # @return [Mail::Message#to]
   def to
     base.to
   end
 
-  # Delgate to the email from
+  # Delegate to the email from
   #
   # @return [Mail::Message#from]
   def from
