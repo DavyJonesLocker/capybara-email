@@ -55,6 +55,37 @@ feature 'Emailer' do
 end
 ```
 
+### Cucumber ###
+Require `capybara/email` in your `features/support/env.rb`
+
+    require 'capybara/email'
+
+Once you have required `capybara-email`, gaining access to usable methods
+is easy as adding this module to your Cucumber `World`:
+
+    World(Capybara::Email::DSL)
+
+I recommend adding this to a support file such as `features/support/capybara_email.rb`
+
+```ruby
+require 'capybara/email'
+World(Capybara::Email::DSL)
+```
+
+Example:
+
+```ruby
+Scenario: Email is sent to winning user
+  Given "me@example.com" is playing a game
+  When that user picks a winning piece
+  Then "me@example.com" receives an email with "You've Won!" as the subject
+
+Then /^"([^"]*)" receives an email with "([^"]*)" as the subject$/ do |email_address, subject|
+  open_email(email_address)
+  current_email.subject.should == subject
+end
+```
+
 ### Test::Unit ###
 
 Include `Capybara::Email::DSL` in your test class
