@@ -82,7 +82,7 @@ Scenario: Email is sent to winning user
 
 Then /^"([^"]*)" receives an email with "([^"]*)" as the subject$/ do |email_address, subject|
   open_email(email_address)
-  current_email.subject.should == subject
+  current_email.subject.should eq subject
 end
 ```
 
