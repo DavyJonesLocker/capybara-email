@@ -11,7 +11,7 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     when :rack_test
       url.to_s
     else
-      Capybara.current_session.driver.send(:url, url.path)
+      Capybara.current_session.driver.send(:url, url.request_uri)
     end
 
     Capybara.current_session.driver.visit url
