@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in capybara-email.gemspec
+if RUBY_VERSION >= '1.9.2' && RUBY_DESCRIPTION[0..3] == 'ruby'
+  gem 'debugger'
+end
 gemspec
-
-gem 'rake'

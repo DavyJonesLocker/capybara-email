@@ -1,4 +1,14 @@
-require 'rspec'
+require 'rubygems'
+begin
+  require 'debugger'
+rescue LoadError
+end
+require 'bundler/setup'
+
+RSpec.configure do |config|
+  config.mock_with :mocha
+end
+
 require 'mail'
 require 'bourne'
 require 'action_mailer'
