@@ -7,14 +7,21 @@ class Capybara::Email::Driver < Capybara::Driver::Base
 
   def follow(url)
     url = URI.parse(url)
-    url = case Capybara.current_driver
-    when :rack_test
-      url.to_s
-    else
-      Capybara.current_session.driver.send(:url, url.request_uri)
-    end
 
-    Capybara.current_session.driver.visit url
+    if Capybara::VERSION.chars.first == "2"
+      # Capybara 2 has a more robust visit method. Here we turn any absolute
+      # urls to relative, and capybara will corretly handle it.
+      Capybara.current_session.visit([url.path, url.query].compact.join('?'))
+    else
+      url = case Capybara.current_driver
+      when :rack_test
+        url.to_s
+      else
+        Capybara.current_session.driver.send(:url, url.request_uri)
+      end
+
+      Capybara.current_session.driver.visit url
+    end
   end
 
 
