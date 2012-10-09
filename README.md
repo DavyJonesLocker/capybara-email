@@ -132,6 +132,8 @@ end
 
 [Brian Cardarella](http://twitter.com/bcardarella)
 
+[We are very thankful for the many contributors](https://github.com/dockyard/client_side_validations-simple_form/graphs/contributors)
+
 ## Versioning ##
 
 This gem follows [Semantic Versioning](http://semver.org)
