@@ -30,7 +30,6 @@ class Capybara::Node::Email < Capybara::Node::Document
 
   # Will open the email body in your browser
   def save_and_open
-    require 'capybara/util/save_and_open_page'
     ::Capybara.save_and_open_page(body)
   end
 

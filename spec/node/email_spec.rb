@@ -60,7 +60,6 @@ describe Capybara::Node::Email do
 
   describe '#save_and_open' do
     before do
-      require 'capybara/util/save_and_open_page'
       message.body = 'Test message'
       ::Capybara.stubs(:save_and_open_page)
     end

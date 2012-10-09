@@ -7,14 +7,7 @@ class Capybara::Email::Driver < Capybara::Driver::Base
 
   def follow(url)
     url = URI.parse(url)
-    url = case Capybara.current_driver
-    when :rack_test
-      url.to_s
-    else
-      Capybara.current_session.driver.send(:url, url.request_uri)
-    end
-
-    Capybara.current_session.driver.visit url
+    Capybara.current_session.visit([url.path, url.query].compact.join('?'))
   end
 
 
