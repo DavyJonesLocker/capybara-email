@@ -14,7 +14,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = Capybara::Email::VERSION
 
-  gem.add_development_dependency 'mail'
+  gem.add_dependency 'mail'
+  gem.add_dependency 'capybara'
   gem.add_development_dependency 'actionmailer'
   gem.add_development_dependency 'capybara', '2.0.0.beta2'
   gem.add_development_dependency 'bourne'
