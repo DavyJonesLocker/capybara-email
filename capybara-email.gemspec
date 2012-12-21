@@ -15,8 +15,8 @@ Gem::Specification.new do |gem|
   gem.version       = Capybara::Email::VERSION
 
   gem.add_development_dependency 'mail'
-  gem.add_development_dependency 'actionmailer'
-  gem.add_development_dependency 'capybara'
+  gem.add_development_dependency 'actionmailer', '~> 3.0'
+  gem.add_development_dependency 'capybara', '~> 1.0'
   gem.add_development_dependency 'bourne'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rake'
