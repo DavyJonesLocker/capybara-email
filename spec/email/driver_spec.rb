@@ -64,6 +64,18 @@ feature 'Integration test' do
     open_email('test@example.com')
     current_email.body.should eq 'New Message'
   end
+
+  scenario "cc'd" do
+    deliver(Mail::Message.new(:cc => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
+    open_email('test@example.com')
+    current_email.body.should eq 'New Message'
+  end
+
+  scenario "bcc'd" do
+    deliver(Mail::Message.new(:bcc => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
+    open_email('test@example.com')
+    current_email.body.should eq 'New Message'
+  end
 end
 
 def deliver(email)
