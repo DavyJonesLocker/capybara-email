@@ -132,7 +132,7 @@ end
 
 [Brian Cardarella](http://twitter.com/bcardarella)
 
-[We are very thankful for the many contributors](https://github.com/dockyard/client_side_validations-simple_form/graphs/contributors)
+[We are very thankful for the many contributors](https://github.com/dockyard/capybara-email/graphs/contributors)
 
 ## Versioning ##
 
