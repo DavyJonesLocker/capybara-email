@@ -46,7 +46,7 @@ class Capybara::Node::Email < Capybara::Node::Document
   #
   # @param  [String] path     The path to where it should be saved [optional]
   #
-  def save_and_open_page(file_name = nil)
+  def save_and_open(file_name = nil)
     require 'launchy'
     Launchy.open(save_page(file_name))
   rescue LoadError
