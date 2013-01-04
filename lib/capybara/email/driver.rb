@@ -10,7 +10,6 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     Capybara.current_session.visit([url.path, url.query].compact.join('?'))
   end
 
-
   def body
     dom.to_xml
   end
