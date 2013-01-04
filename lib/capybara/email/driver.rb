@@ -10,6 +10,8 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     url = case Capybara.current_driver
     when :rack_test
       url.to_s
+    when :poltergeist
+      Capybara.current_session.driver.app_server.url(url.request_uri)
     else
       Capybara.current_session.driver.send(:url, url.request_uri)
     end
