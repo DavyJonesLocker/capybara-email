@@ -28,9 +28,28 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.from
   end
 
-  # Will open the email body in your browser
-  def save_and_open
-    ::Capybara.save_and_open_page(body)
+  # Save a snapshot of the page.
+  #
+  # @param  [String] path     The path to where it should be saved [optional]
+  #
+  def save_page(path = nil)
+    path ||= "capybara-email-#{Time.new.strftime("%Y%m%d%H%M%S")}#{rand(10**10)}.html"
+    path = File.expand_path(path, Capybara.save_and_open_page_path) if Capybara.save_and_open_page_path
+
+    FileUtils.mkdir_p(File.dirname(path))
+
+    File.open(path,'w') { |f| f.write(body) }
+    path
   end
 
+  # Save a snapshot of the page and open it in a browser for inspection
+  #
+  # @param  [String] path     The path to where it should be saved [optional]
+  #
+  def save_and_open_page(file_name = nil)
+    require 'launchy'
+    Launchy.open(save_page(file_name))
+  rescue LoadError
+    warn 'Please install the launchy gem to open page with save_and_open_page'
+  end
 end
