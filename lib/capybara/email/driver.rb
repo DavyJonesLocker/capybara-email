@@ -57,6 +57,9 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     dom.xpath(selector).map { |node| Capybara::Email::Node.new(self, node) }
   end
 
+  alias_method :find_xpath, :find
+
+
   # String version of email HTML source
   #
   # @return String
