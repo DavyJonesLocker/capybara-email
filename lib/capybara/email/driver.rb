@@ -77,13 +77,13 @@ class Capybara::Email::Driver < Capybara::Driver::Base
   def raw
     if email.mime_type == 'multipart/alternative'
       if email.html_part
-        return email.html_part.body.encoded
+        return email.html_part.body.to_s
       elsif email.text_part
-        return email.text_part.body.encoded
+        return email.text_part.body.to_s
       end
     end
 
-    return email.body.encoded
+    return email.body.to_s
   end
 
   private
