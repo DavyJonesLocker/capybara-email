@@ -112,7 +112,7 @@ def html_email
 end
 
 def plain_email
-  Mail::Message.new(:body => <<-PLAIN, :content_type => 'text/plain', :to => 'test@example.com')
+  Mail::Message.new(:body => <<-PLAIN, :content_type => 'text/plain', :to => 'test@example.com', :from => 'sender@example.com')
 This is only a plain test.
 http://example.com
   PLAIN
