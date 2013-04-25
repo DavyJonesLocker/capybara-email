@@ -11,6 +11,10 @@ class Capybara::Email::Node < Capybara::Driver::Node
     string_node.value
   end
 
+  def visible_text
+    Capybara::Helpers.normalize_whitespace(unnormalized_text)
+  end
+
   def click
     driver.follow(self[:href].to_s)
   end
@@ -25,6 +29,22 @@ class Capybara::Email::Node < Capybara::Driver::Node
 
   def find(locator)
     native.xpath(locator).map { |node| self.class.new(driver, node) }
+  end
+
+  protected
+
+  def unnormalized_text
+    if !visible?
+      ''
+    elsif native.text?
+      native.text
+    elsif native.element?
+      native.children.map do |child|
+        Capybara::Email::Node.new(driver, child).unnormalized_text
+      end.join
+    else
+      ''
+    end
   end
 
   private
