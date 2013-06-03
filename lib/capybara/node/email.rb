@@ -21,6 +21,13 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.to
   end
 
+  # Delegate to the email reply_to
+  #
+  # @return [Mail::Message#reply_to]
+  def reply_to
+    base.email.reply_to
+  end
+
   # Delegate to the email from
   #
   # @return [Mail::Message#from]

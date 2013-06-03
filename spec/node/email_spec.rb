@@ -48,6 +48,16 @@ describe Capybara::Node::Email do
     end
   end
 
+  describe '#reply_to' do
+    before do
+      message.reply_to = 'test@example.com'
+    end
+
+    it 'delegates to the base' do
+      email.reply_to.should include 'test@example.com'
+    end
+  end
+
   describe '#from' do
     before do
       message.from = 'test@example.com'
