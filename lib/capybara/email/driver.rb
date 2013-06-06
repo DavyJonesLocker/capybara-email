@@ -75,7 +75,7 @@ class Capybara::Email::Driver < Capybara::Driver::Base
   #
   # @return String
   def raw
-    if email.mime_type == 'multipart/alternative'
+    if email.mime_type =~ /\Amultipart\/(alternative|related)\Z/
       if email.html_part
         return email.html_part.body.to_s
       elsif email.text_part
