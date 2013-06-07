@@ -35,6 +35,9 @@ class Capybara::Email::Driver < Capybara::Driver::Base
 
   alias_method :find_xpath, :find
 
+  def find_css(selector)
+    dom.css(selector).map { |node| Capybara::Email::Node.new(self, node) }
+  end
 
   # String version of email HTML source
   #
