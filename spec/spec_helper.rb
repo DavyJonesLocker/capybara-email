@@ -1,9 +1,10 @@
 require 'rubygems'
+require 'bundler/setup'
+
 begin
-  require 'debugger'
+  require 'byebug'
 rescue LoadError
 end
-require 'bundler/setup'
 
 RSpec.configure do |config|
   config.mock_with :mocha
