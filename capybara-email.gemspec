@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'mail'
   gem.add_dependency 'capybara', '~> 2.1.0'
-  gem.add_development_dependency 'actionmailer', '>= 3.0'
+  gem.add_development_dependency 'actionmailer', '> 3.0'
   gem.add_development_dependency 'bourne'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rake'
