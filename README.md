@@ -128,6 +128,18 @@ class EmailTriggerControllerTest < ActionController::IntegrationTest
 end
 ```
 
+## Sending Emails with JavaScript ##
+Sending emails asynchronously will cause `#open_email` to not open the
+correct email or not find any email at all depending on the state of the
+email queue. We recommend forcing a sleep prior to trying to read any
+email after an asynchronous event:
+
+```ruby
+click_link 'Send email'
+sleep 0.1
+open_email 'test@example.com'
+```
+
 ## Authors ##
 
 [Brian Cardarella](http://twitter.com/bcardarella)
