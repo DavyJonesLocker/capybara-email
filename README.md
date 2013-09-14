@@ -90,10 +90,16 @@ end
 
 ### Test::Unit ###
 
+Require `capybara/email` at the top of `test/test_helper.rb`
+
+```ruby
+  require 'capybara/email'
+```
+
 Include `Capybara::Email::DSL` in your test class
 
 ```ruby
-class ActionController::IntegrationTest
+class ActionDispatch::IntegrationTest
   include Capybara::Email::DSL
 end
 ```
