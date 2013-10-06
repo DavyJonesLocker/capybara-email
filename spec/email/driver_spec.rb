@@ -70,6 +70,21 @@ feature 'Integration test' do
     all_emails.should be_empty
   end
 
+  # should read html_part
+  scenario 'multipart/mixed email' do
+    email = deliver(multipart_mixed_email)
+
+    open_email('test@example.com')
+    current_email.click_link 'example'
+    page.should have_content 'Hello world!'
+    current_email.should have_content 'This is only a html test'
+
+    all_emails.first.should eq email
+
+    clear_emails
+    all_emails.should be_empty
+  end
+
   scenario 'via ActionMailer' do
     email = deliver(plain_email)
 
@@ -157,5 +172,19 @@ def multipart_related_email
       body html_email.body.encoded
     end
     content_type 'multipart/related; charset=UTF-8'
+  end
+end
+
+def multipart_mixed_email
+  Mail::Message.new do
+    to 'test@example.com'
+    text_part do
+      body plain_email.body.encoded
+    end
+    html_part do
+      content_type 'text/html; charset=UTF-8'
+      body html_email.body.encoded
+    end
+    content_type 'multipart/mixed; charset=UTF-8'
   end
 end
