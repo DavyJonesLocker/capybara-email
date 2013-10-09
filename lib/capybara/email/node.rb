@@ -15,6 +15,10 @@ class Capybara::Email::Node < Capybara::Driver::Node
     Capybara::Helpers.normalize_whitespace(unnormalized_text)
   end
 
+  def all_text
+    Capybara::Helpers.normalize_whitespace(text)
+  end
+
   def click
     driver.follow(self[:href].to_s)
   end
