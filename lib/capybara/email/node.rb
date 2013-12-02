@@ -34,6 +34,7 @@ class Capybara::Email::Node < Capybara::Driver::Node
   def find(locator)
     native.xpath(locator).map { |node| self.class.new(driver, node) }
   end
+  alias :find_xpath :find
 
   protected
 

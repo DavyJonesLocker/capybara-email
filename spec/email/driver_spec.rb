@@ -99,6 +99,12 @@ feature 'Integration test' do
     all_emails.should be_empty
   end
 
+  scenario 'email content matchers' do
+    email = deliver(multipart_email)
+    open_email('test@example.com')
+    current_email.should have_link('another example', :href => 'http://example.com:1234')
+  end
+
   scenario 'via ActionMailer' do
     email = deliver(plain_email)
 
