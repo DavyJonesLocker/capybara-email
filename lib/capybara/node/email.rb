@@ -49,6 +49,13 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.email.header.fields.map(&:name)
   end
 
+  # Corrects the inspect string
+  #
+  # @return [String]
+  def inspect
+    "<#{self.class.to_s}>"
+  end
+
   # Save a snapshot of the page.
   #
   # @param  [String] path     The path to where it should be saved [optional]

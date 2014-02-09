@@ -89,4 +89,10 @@ describe Capybara::Node::Email do
       email.headers.should include 'second-key'
     end
   end
+
+  describe '#inspect' do
+    it 'corrects class name' do
+      email.inspect.should eq '<Capybara::Node::Email>'
+    end
+  end
 end
