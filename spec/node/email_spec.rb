@@ -67,4 +67,26 @@ describe Capybara::Node::Email do
       email.from.should include 'test@example.com'
     end
   end
+
+  describe '#header' do
+    before do
+      message['header-key'] = 'header_value'
+    end
+
+    it 'delegates to the base' do
+      email.header('header-key').should eq 'header_value'
+    end
+  end
+
+  describe '#headers' do
+    before do
+      message['first-key'] = 'first_value'
+      message['second-key'] = 'second_value'
+    end
+
+    it 'delegates to the base' do
+      email.headers.should include 'first-key'
+      email.headers.should include 'second-key'
+    end
+  end
 end

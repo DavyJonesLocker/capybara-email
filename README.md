@@ -50,6 +50,14 @@ feature 'Emailer' do
     current_email.should have_content 'Hello Joe!'
   end
 
+  scenario 'testing for a custom header' do
+    current_email.headers.should include 'header-key'
+  end
+
+  scenario 'testing for a custom header value' do
+    current_email.header('header-key').should eq 'header_value'
+  end
+
   scenario 'view the email body in your browser' do
     # the `launchy` gem is required
     current_email.save_and_open
@@ -125,6 +133,14 @@ class EmailTriggerControllerTest < ActionController::IntegrationTest
 
   test 'testing for content' do
     current_email.should have_content 'Hello Joe!'
+  end
+
+  test 'testing for a custom header' do
+    current_email.headers.should include 'header-key'
+  end
+
+  test 'testing for a custom header value' do
+    current_email.header('header-key').should eq 'header_value'
   end
 
   test 'view the email body in your browser' do

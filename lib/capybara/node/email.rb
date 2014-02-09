@@ -35,6 +35,20 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.from
   end
 
+  # Returns the value of the passed in header key.
+  #
+  # @return String
+  def header(key)
+    base.email.header[key].value
+  end
+
+  # Returns the header keys as an array of strings.
+  #
+  # @return [String]
+  def headers
+    base.email.header.fields.map(&:name)
+  end
+
   # Save a snapshot of the page.
   #
   # @param  [String] path     The path to where it should be saved [optional]
