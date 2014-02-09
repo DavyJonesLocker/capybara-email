@@ -17,33 +17,6 @@ class Capybara::Email::Driver < Capybara::Driver::Base
     dom.to_xml
   end
 
-  # Access to email subject
-  #
-  #  delegates back to instance of Mail::Message
-  #
-  # @return String
-  def subject
-    email.subject
-  end
-
-  # Access to email recipient(s)
-  #
-  #  delegates back to instance of Mail::Message
-  #
-  # @return [Array<String>]
-  def to
-    email.to
-  end
-
-  # Access to email sender(s)
-  #
-  #  delegates back to instance of Mail::Message
-  #
-  # @return [Array<String>]
-  def from
-    email.from
-  end
-
   # Nokogiri object for traversing content
   #
   # @return Nokogiri::HTML::Document
@@ -90,6 +63,18 @@ class Capybara::Email::Driver < Capybara::Driver::Base
   end
 
   private
+
+  def method_missing(meth, *args, &block)
+    if email.respond_to?(meth)
+      if args.empty?
+        email.send(meth)
+      else
+        email.send(meth, args)
+      end
+    else
+      super
+    end
+  end
 
   def convert_to_html(text)
     "<html><body>#{convert_links(text)}</body></html>"

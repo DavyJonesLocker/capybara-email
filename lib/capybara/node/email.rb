@@ -7,34 +7,6 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.raw
   end
 
-  # Delegate to the email subject
-  #
-  # @return [Mail::Message#subject]
-  def subject
-    base.subject
-  end
-
-  # Delegate to the email to
-  #
-  # @return [Mail::Message#to]
-  def to
-    base.to
-  end
-
-  # Delegate to the email reply_to
-  #
-  # @return [Mail::Message#reply_to]
-  def reply_to
-    base.email.reply_to
-  end
-
-  # Delegate to the email from
-  #
-  # @return [Mail::Message#from]
-  def from
-    base.from
-  end
-
   # Returns the value of the passed in header key.
   #
   # @return String
@@ -79,5 +51,11 @@ class Capybara::Node::Email < Capybara::Node::Document
     Launchy.open(save_page(file_name))
   rescue LoadError
     warn 'Please install the launchy gem to open page with save_and_open_page'
+  end
+
+  private
+
+  def method_missing(meth, *args, &block)
+    base.send(meth, *args)
   end
 end

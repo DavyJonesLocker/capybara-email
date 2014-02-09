@@ -69,6 +69,12 @@ feature 'Integration test' do
     all_emails.should be_empty
   end
 
+  it 'delegates to base' do
+    email = deliver(plain_email)
+    open_email('test@example.com')
+    current_email.subject.should eq 'Test Email'
+  end
+
   # should read html_part
   scenario 'multipart/related email' do
     email = deliver(multipart_related_email)
@@ -164,7 +170,7 @@ def html_email
 end
 
 def plain_email
-  Mail::Message.new(:body => <<-PLAIN, :content_type => 'text/plain', :to => 'test@example.com', :from => 'sender@example.com')
+  Mail::Message.new(:body => <<-PLAIN, :content_type => 'text/plain', :to => 'test@example.com', :from => 'sender@example.com', :subject => 'Test Email')
 This is only a plain test.
 http://example.com
   PLAIN
