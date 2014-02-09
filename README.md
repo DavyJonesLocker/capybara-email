@@ -150,6 +150,18 @@ class EmailTriggerControllerTest < ActionController::IntegrationTest
 end
 ```
 
+### CurrentEmail API ###
+
+The `current_email` method will delegate all necessary method calls to
+`Mail::Message`. So if you need to access the subject of an email:
+
+```ruby
+current_email.subject`
+```
+
+Check out API for the `mail` gem for details on what methods are
+available.
+
 ## Sending Emails with JavaScript ##
 Sending emails asynchronously will cause `#open_email` to not open the
 correct email or not find any email at all depending on the state of the
