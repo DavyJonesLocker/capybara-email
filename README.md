@@ -26,7 +26,11 @@ Or install it yourself as:
 
 ### RSpec ###
 
-Require `capybara/email/rspec` in your `spec_helper`
+In your `spec_helper.rb` require `capybara/email/rspec`.
+
+```ruby
+require 'capybara/email/rspec'
+```
 
 Example:
 
