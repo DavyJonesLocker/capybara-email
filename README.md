@@ -47,19 +47,19 @@ feature 'Emailer' do
 
   scenario 'following a link' do
     current_email.click_link 'your profile'
-    page.should have_content 'Profile page'
+    expect(page).to have_content 'Profile page'
   end
 
   scenario 'testing for content' do
-    current_email.should have_content 'Hello Joe!'
+    expect(current_email).to have_content 'Hello Joe!'
   end
 
   scenario 'testing for a custom header' do
-    current_email.headers.should include 'header-key'
+    expect(current_email.headers).to include 'header-key'
   end
 
   scenario 'testing for a custom header value' do
-    current_email.header('header-key').should eq 'header_value'
+    expect(current_email.header('header-key')).to eq 'header_value'
   end
 
   scenario 'view the email body in your browser' do
@@ -96,7 +96,7 @@ Scenario: Email is sent to winning user
 
 Then /^"([^"]*)" receives an email with "([^"]*)" as the subject$/ do |email_address, subject|
   open_email(email_address)
-  current_email.subject.should eq subject
+  expect(current_email.subject).to eq subject
 end
 ```
 
@@ -132,19 +132,19 @@ class EmailTriggerControllerTest < ActionController::IntegrationTest
 
   test 'following a link' do
     current_email.click_link 'your profile'
-    page.should have_content 'Profile page'
+    expect(page).to have_content 'Profile page'
   end
 
   test 'testing for content' do
-    current_email.should have_content 'Hello Joe!'
+    expect(current_email).to have_content 'Hello Joe!'
   end
 
   test 'testing for a custom header' do
-    current_email.headers.should include 'header-key'
+    expect(current_email.headers).to include 'header-key'
   end
 
   test 'testing for a custom header value' do
-    current_email.header('header-key').should eq 'header_value'
+    expect(current_email.header('header-key')).to eq 'header_value'
   end
 
   test 'view the email body in your browser' do
