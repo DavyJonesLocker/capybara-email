@@ -17,13 +17,13 @@ feature 'Integration test' do
 
     open_email('test@example.com')
     current_email.click_link 'example'
-    page.should have_content 'Hello world!'
-    current_email.should have_content 'This is only a html test'
+    expect(page).to have_content 'Hello world!'
+    expect(current_email).to have_content 'This is only a html test'
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   scenario 'html email follows links' do
@@ -31,13 +31,13 @@ feature 'Integration test' do
     open_email('test@example.com')
 
     current_email.click_link 'example'
-    page.current_url.should eq('http://example.com/')
+    expect(page.current_url).to eq('http://example.com/')
 
     current_email.click_link 'another example'
-    page.current_url.should eq('http://example.com:1234/')
+    expect(page.current_url).to eq('http://example.com:1234/')
 
     current_email.click_link 'yet another example'
-    page.current_url.should eq('http://example.com:1234/some/path?foo=bar')
+    expect(page.current_url).to eq('http://example.com:1234/some/path?foo=bar')
   end
 
   scenario 'plain text email' do
@@ -45,13 +45,13 @@ feature 'Integration test' do
 
     open_email('test@example.com')
     current_email.click_link 'http://example.com'
-    page.should have_content 'Hello world!'
-    current_email.should have_content 'This is only a plain test.'
+    expect(page).to have_content 'Hello world!'
+    expect(current_email).to have_content 'This is only a plain test.'
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   # should read html_part
@@ -60,19 +60,19 @@ feature 'Integration test' do
 
     open_email('test@example.com')
     current_email.click_link 'example'
-    page.should have_content 'Hello world!'
-    current_email.should have_content 'This is only a html test'
+    expect(page).to have_content 'Hello world!'
+    expect(current_email).to have_content 'This is only a html test'
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   it 'delegates to base' do
     email = deliver(plain_email)
     open_email('test@example.com')
-    current_email.subject.should eq 'Test Email'
+    expect(current_email.subject).to eq 'Test Email'
   end
 
   # should read html_part
@@ -81,13 +81,13 @@ feature 'Integration test' do
 
     open_email('test@example.com')
     current_email.click_link 'example'
-    page.should have_content 'Hello world!'
-    current_email.should have_content 'This is only a html test'
+    expect(page).to have_content 'Hello world!'
+    expect(current_email).to have_content 'This is only a html test'
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   # should read html_part
@@ -96,56 +96,56 @@ feature 'Integration test' do
 
     open_email('test@example.com')
     current_email.click_link 'example'
-    page.should have_content 'Hello world!'
-    current_email.should have_content 'This is only a html test'
+    expect(page).to have_content 'Hello world!'
+    expect(current_email).to have_content 'This is only a html test'
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   scenario 'email content matchers' do
     email = deliver(multipart_email)
     open_email('test@example.com')
-    current_email.should have_link('another example', :href => 'http://example.com:1234')
+    expect(current_email).to have_link('another example', :href => 'http://example.com:1234')
   end
 
   scenario 'via ActionMailer' do
     email = deliver(plain_email)
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   scenario 'via Mail' do
     email = plain_email.deliver!
 
-    all_emails.first.should eq email
+    expect(all_emails.first).to eq email
 
     clear_emails
-    all_emails.should be_empty
+    expect(all_emails).to be_empty
   end
 
   scenario 'multiple emails' do
     deliver(plain_email)
     deliver(Mail::Message.new(:to => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
     open_email('test@example.com')
-    current_email.body.should eq 'New Message'
+    expect(current_email.body).to eq 'New Message'
   end
 
   scenario "cc'd" do
     deliver(Mail::Message.new(:cc => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
     open_email('test@example.com')
-    current_email.body.should eq 'New Message'
+    expect(current_email.body).to eq 'New Message'
   end
 
   scenario "bcc'd" do
     deliver(Mail::Message.new(:bcc => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
     open_email('test@example.com')
-    current_email.body.should eq 'New Message'
+    expect(current_email.body).to eq 'New Message'
   end
 end
 

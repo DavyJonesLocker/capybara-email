@@ -12,7 +12,7 @@ describe Capybara::Node::Email do
       end
 
       it 'delegates to the base' do
-        email.body.should eq '<a href="http://example.com">example</a>'
+        expect(email.body).to eq '<a href="http://example.com">example</a>'
       end
     end
 
@@ -23,7 +23,7 @@ describe Capybara::Node::Email do
       end
 
       it 'delegates to the base' do
-        email.body.should eq 'http://example.com'
+        expect(email.body).to eq 'http://example.com'
       end
     end
   end
@@ -34,7 +34,7 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      email.subject.should eq 'Test subject'
+      expect(email.subject).to eq 'Test subject'
     end
   end
 
@@ -44,7 +44,7 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      email.to.should include 'test@example.com'
+      expect(email.to).to include 'test@example.com'
     end
   end
 
@@ -54,7 +54,7 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      email.reply_to.should include 'test@example.com'
+      expect(email.reply_to).to include 'test@example.com'
     end
   end
 
@@ -64,7 +64,7 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      email.from.should include 'test@example.com'
+      expect(email.from).to include 'test@example.com'
     end
   end
 
@@ -74,7 +74,7 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      email.header('header-key').should eq 'header_value'
+      expect(email.header('header-key')).to eq 'header_value'
     end
   end
 
@@ -85,14 +85,14 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      email.headers.should include 'first-key'
-      email.headers.should include 'second-key'
+      expect(email.headers).to include 'first-key'
+      expect(email.headers).to include 'second-key'
     end
   end
 
   describe '#inspect' do
     it 'corrects class name' do
-      email.inspect.should eq '<Capybara::Node::Email>'
+      expect(email.inspect).to eq '<Capybara::Node::Email>'
     end
   end
 end
