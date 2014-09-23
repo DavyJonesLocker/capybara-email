@@ -163,6 +163,9 @@ The `current_email` method will delegate all necessary method calls to
 current_email.subject`
 ```
 
+Check out API for the `mail` gem for details on what methods are
+available.
+
 ## Setting your test host
 When testing, it's common to want to open an email and click through to your
 application. To do this, you'll probably need to update your test
@@ -181,12 +184,9 @@ ActionDispatch::IntegrationTest
 end
 
 # config/environments/test.rb
-config.action_mailer.default_url_options = { host: 'localhost', port:
-3000 }
+config.action_mailer.default_url_options = { host: 'localhost', 
+                                             port: 3000 }
 ```
-
-Check out API for the `mail` gem for details on what methods are
-available.
 
 ## Sending Emails with JavaScript ##
 Sending emails asynchronously will cause `#open_email` to not open the
@@ -217,14 +217,11 @@ pull requests to specific branches rather than master.
 
 Please make sure you include tests!
 
-Unless Rails drops support for Ruby 1.8.7 we will continue to use the
-hash-rocket syntax. Please respect this.
-
 Don't use tabs to indent, two spaces are the standard.
 
 ## Legal ##
 
-[DockYard](http://dockyard.com), LLC &copy; 2012
+[DockYard](http://dockyard.com), Inc. &copy; 2014
 
 [@dockyard](http://twitter.com/dockyard)
 
