@@ -163,6 +163,28 @@ The `current_email` method will delegate all necessary method calls to
 current_email.subject`
 ```
 
+## Setting your test host
+When testing, it's common to want to open an email and click through to your
+application. To do this, you'll probably need to update your test
+environment, as well as Capybara's configuration.
+
+By default, Capybara's `app_host` is set to
+`http://example.com.` You should update this so that it points to the
+same host as your test environment. In our example, we'll update both to
+`http://localhost/3001`:
+
+```ruby
+# tests/test_helper.rb
+ActionDispatch::IntegrationTest
+  Capybara.server_port = 3001
+  Capybara.app_host = 'http://localhost/3001'
+end
+
+# config/environments/test.rb
+config.action_mailer.default_url_options = { host: 'localhost', port:
+3000 }
+```
+
 Check out API for the `mail` gem for details on what methods are
 available.
 
