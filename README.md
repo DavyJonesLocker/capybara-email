@@ -160,7 +160,7 @@ The `current_email` method will delegate all necessary method calls to
 `Mail::Message`. So if you need to access the subject of an email:
 
 ```ruby
-current_email.subject`
+current_email.subject
 ```
 
 Check out API for the `mail` gem for details on what methods are
