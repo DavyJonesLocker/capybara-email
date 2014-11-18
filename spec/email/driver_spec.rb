@@ -19,6 +19,7 @@ feature 'Integration test' do
     current_email.click_link 'example'
     expect(page).to have_content 'Hello world!'
     expect(current_email).to have_content 'This is only a html test'
+    expect(current_email).to have_css 'a'
 
     expect(all_emails.first).to eq email
 
