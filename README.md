@@ -54,6 +54,10 @@ feature 'Emailer' do
     expect(current_email).to have_content 'Hello Joe!'
   end
 
+  scenario 'testing for attachments' do
+    expect(current_email.attachments.first.filename).to eq 'filename.csv'
+  end
+
   scenario 'testing for a custom header' do
     expect(current_email.headers).to include 'header-key'
   end
