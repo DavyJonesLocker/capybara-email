@@ -178,13 +178,13 @@ environment, as well as Capybara's configuration.
 By default, Capybara's `app_host` is set to
 `http://example.com.` You should update this so that it points to the
 same host as your test environment. In our example, we'll update both to
-`http://localhost/3001`:
+`http://localhost:3001`:
 
 ```ruby
 # tests/test_helper.rb
 ActionDispatch::IntegrationTest
   Capybara.server_port = 3001
-  Capybara.app_host = 'http://localhost/3001'
+  Capybara.app_host = 'http://localhost:3001'
 end
 
 # config/environments/test.rb
