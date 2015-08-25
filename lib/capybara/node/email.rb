@@ -7,6 +7,12 @@ class Capybara::Node::Email < Capybara::Node::Document
     base.raw
   end
 
+  # Treat the message's body as a Capybara::Node::Simple so that
+  # selectors actually work instead of raising NotImplementedErrors
+  def body_as_simple_node
+    @body_as_simple_node ||= Capybara.string base.raw
+  end
+
   # Returns the value of the passed in header key.
   #
   # @return String
@@ -55,7 +61,14 @@ class Capybara::Node::Email < Capybara::Node::Document
 
   private
 
+  # Tries to send to `base` first.
+  # If an NotImplementedError is hit because some finders/matchers/etc. aren't implemented,
+  # fall back to treating the message body as a Capybara::Node::Simple
   def method_missing(meth, *args, &block)
-    base.send(meth, *args)
+    begin
+      base.send(meth, *args)
+    rescue NotImplementedError
+      body_as_simple_node.send(meth, *args)
+    end
   end
 end
