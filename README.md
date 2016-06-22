@@ -1,6 +1,6 @@
 # CapybaraEmail #
 
-[![Build Status](https://secure.travis-ci.org/dockyard/capybara-email.png?branch=master)](http://travis-ci.org/dockyard/capybara-email)
+[![Build Status](https://travis-ci.org/DockYard/capybara-email.svg?branch=master)](https://travis-ci.org/DockYard/capybara-email)
 [![Dependency Status](https://gemnasium.com/dockyard/capybara-email.png?travis)](https://gemnasium.com/dockyard/capybara-email)
 [![Code Climate](https://d3s6mut3hikguw.cloudfront.net/github/dockyard/capybara-email.png)](https://codeclimate.com/github/dockyard/capybara-email)
 
