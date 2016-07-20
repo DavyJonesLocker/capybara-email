@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Test your ActionMailer and Mailer messages in Capybara}
   gem.summary       = %q{Test your ActionMailer and Mailer messages in Capybara}
   gem.homepage      = 'https://github.com/dockyard/capybara-email'
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files -- {LICENSE,README.md,lib/*}`.split("\n")
   gem.test_files    = `git ls-files -- {spec}/*`.split("\n")
