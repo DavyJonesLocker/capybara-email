@@ -148,6 +148,12 @@ feature 'Integration test' do
     open_email('test@example.com')
     expect(current_email.body).to eq 'New Message'
   end
+
+  scenario 'subject' do
+    deliver(Mail::Message.new(:to => 'test@example.com', :subject => 'Message Subject', :body => 'New Message', :context => 'text/plain'))
+    open_email('Message Subject')
+    current_email.body.should eq 'New Message'
+  end
 end
 
 def deliver(email)
