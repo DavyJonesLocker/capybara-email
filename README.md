@@ -123,7 +123,7 @@ end
 Example:
 
 ```ruby
-class EmailTriggerControllerTest < ActionController::IntegrationTest
+class EmailTriggerControllerTest < ActionDispatch::IntegrationTest
   def setup
     # will clear the message queue
     clear_emails
