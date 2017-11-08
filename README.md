@@ -1,7 +1,7 @@
 # CapybaraEmail #
 
-[![Build Status](https://travis-ci.org/DockYard/capybara-email.svg?branch=master)](https://travis-ci.org/DockYard/capybara-email)
-[![Dependency Status](https://gemnasium.com/dockyard/capybara-email.png?travis)](https://gemnasium.com/dockyard/capybara-email)
+[![Build Status](https://travis-ci.org/DavyJonesLocker/capybara-email.svg?branch=master)](https://travis-ci.org/DavyJonesLocker/capybara-email)
+[![Dependency Status](https://gemnasium.com/badges/DavyJonesLocker/capybara-email.svg?travis)](https://gemnasium.com/DavyJonesLocker/capybara-email.svg)
 [![Code Climate](https://d3s6mut3hikguw.cloudfront.net/github/dockyard/capybara-email.png)](https://codeclimate.com/github/dockyard/capybara-email)
 
 Easily test [ActionMailer](https://github.com/rails/rails/tree/master/actionmailer) and [Mail](https://github.com/mikel/mail) messages in your Capybara integration tests
