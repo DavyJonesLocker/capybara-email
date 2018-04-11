@@ -12,14 +12,14 @@ class Capybara::Email::Node < Capybara::Driver::Node
   end
 
   def visible_text
-    Capybara::Helpers.normalize_whitespace(unnormalized_text)
+    normalize_whitespace(unnormalized_text)
   end
 
   def all_text
-    Capybara::Helpers.normalize_whitespace(text)
+    normalize_whitespace(text)
   end
 
-  def click
+  def click(_keys=[], _options={})
     driver.follow(self[:href].to_s)
   end
 
@@ -53,6 +53,10 @@ class Capybara::Email::Node < Capybara::Driver::Node
   end
 
   private
+
+  def normalize_whitespace(text)
+    text.to_s.gsub(/[[:space:]]+/, ' ').strip
+  end
 
   def string_node
     @string_node ||= Capybara::Node::Simple.new(native)
