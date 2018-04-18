@@ -1,3 +1,7 @@
+## 3.0.0
+
+* Update for Capybara 3 compatibility
+
 ## 2.4.0
 
 * Updated Capybara
