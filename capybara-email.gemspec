@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://github.com/dockyard/capybara-email'
   gem.license       = 'MIT'
 
-  gem.files         = `git ls-files -- {LICENSE,README.md,lib/*}`.split("\n")
-  gem.test_files    = `git ls-files -- {spec}/*`.split("\n")
+  gem.files         = Dir['lib/**/*.rb', 'LICENSE', 'README.md']
+  gem.test_files    = Dir['spec/**/*.rb']
   gem.name          = 'capybara-email'
   gem.require_paths = ['lib']
   gem.version       = Capybara::Email::VERSION
