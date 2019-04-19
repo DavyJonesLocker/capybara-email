@@ -31,6 +31,10 @@ class Capybara::Email::Node < Capybara::Driver::Node
     string_node.visible?
   end
 
+  def disabled?
+    string_node.disabled?
+  end
+
   def find(locator)
     native.xpath(locator).map { |node| self.class.new(driver, node) }
   end
