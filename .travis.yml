@@ -5,8 +5,6 @@ rvm:
   - 2.3.1
   - ruby-head
 
-sudo: false
-
 cache: bundler
 
 matrix:
