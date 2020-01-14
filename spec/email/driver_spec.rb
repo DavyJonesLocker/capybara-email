@@ -41,6 +41,14 @@ feature 'Integration test' do
     expect(page.current_url).to eq('http://example.com:1234/some/path?foo=bar')
   end
 
+  scenario 'html email follows links via click_on' do
+    email = deliver(html_email)
+    open_email('test@example.com')
+
+    current_email.click_on 'example'
+    expect(page.current_url).to eq('http://example.com/')
+  end
+
   scenario 'plain text email' do
     email = deliver(plain_email)
 
