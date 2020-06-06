@@ -3,7 +3,7 @@ require File.expand_path('../lib/capybara/email/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ['Brian Cardarella']
-  gem.email         = ['bcardarella@gmail.com', 'brian@dockyard.com']
+  gem.email         = %w(bcardarella@gmail.com brian@dockyard.com)
   gem.description   = %q{Test your ActionMailer and Mailer messages in Capybara}
   gem.summary       = %q{Test your ActionMailer and Mailer messages in Capybara}
   gem.homepage      = 'https://github.com/dockyard/capybara-email'
