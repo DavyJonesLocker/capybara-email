@@ -133,6 +133,10 @@ class EmailTriggerControllerTest < ActionDispatch::IntegrationTest
     open_email('test@example.com')
   end
 
+  test 'testing any email is sent' do
+    expect(all_emails).not_to be_empty
+  end
+
   test 'following a link' do
     current_email.click_link 'your profile'
     expect(page).to have_content 'Profile page'
