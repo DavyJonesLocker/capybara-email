@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Capybara::Node::Email < Capybara::Node::Document
 
   # Delegate to the email body

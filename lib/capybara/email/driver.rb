@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Capybara::Email::Driver < Capybara::Driver::Base
   attr_reader :email
 
