@@ -8,7 +8,7 @@ class Capybara::Email::Driver < Capybara::Driver::Base
   def follow(url)
     url = URI.parse(url)
     host = "#{url.scheme}://#{url.host}"
-    host << ":#{url.port}" unless url.port == url.default_port
+    host += ":#{url.port}" unless url.port == url.default_port
     host_with_path = File.join(host, url.path)
     Capybara.current_session.visit([host_with_path, url.query].compact.join('?'))
   end
