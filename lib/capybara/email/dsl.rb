@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Capybara::Email::DSL
 
   # Returns the currently set email.

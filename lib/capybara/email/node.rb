@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Capybara::Email::Node < Capybara::Driver::Node
   def text
     native.text
