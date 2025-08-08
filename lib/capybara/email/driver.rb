@@ -68,16 +68,20 @@ class Capybara::Email::Driver < Capybara::Driver::Base
 
   private
 
-  def method_missing(meth, *args, &block)
-    if email.respond_to?(meth)
+  def method_missing(method_name, *args, &block)
+    if email.respond_to?(method_name)
       if args.empty?
-        email.send(meth)
+        email.send(method_name)
       else
-        email.send(meth, args)
+        email.send(method_name, args)
       end
     else
       super
     end
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    email.respond_to?(method_name, include_private || super)
   end
 
   def convert_to_html(text)

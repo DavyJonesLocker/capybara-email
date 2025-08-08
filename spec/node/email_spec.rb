@@ -37,6 +37,10 @@ describe Capybara::Node::Email do
     it 'delegates to the base' do
       expect(email.subject).to eq 'Test subject'
     end
+
+    it 'responds to :subject' do
+      expect(email).to respond_to(:subject)
+    end
   end
 
   describe '#to' do
@@ -46,6 +50,10 @@ describe Capybara::Node::Email do
 
     it 'delegates to the base' do
       expect(email.to).to include 'test@example.com'
+    end
+
+    it 'responds to :to' do
+      expect(email).to respond_to(:to)
     end
   end
 
@@ -57,6 +65,10 @@ describe Capybara::Node::Email do
     it 'delegates to the base' do
       expect(email.reply_to).to include 'test@example.com'
     end
+
+    it 'responds to :reply_to' do
+      expect(email).to respond_to(:reply_to)
+    end
   end
 
   describe '#from' do
@@ -66,6 +78,10 @@ describe Capybara::Node::Email do
 
     it 'delegates to the base' do
       expect(email.from).to include 'test@example.com'
+    end
+
+    it 'responds to :from' do
+      expect(email).to respond_to(:from)
     end
   end
 

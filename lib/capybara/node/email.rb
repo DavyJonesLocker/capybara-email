@@ -62,14 +62,16 @@ class Capybara::Node::Email < Capybara::Node::Document
 
   private
 
-  # Tries to send to `base` first.
-  # If an NotImplementedError is hit because some finders/matchers/etc. aren't implemented,
-  # fall back to treating the message body as a Capybara::Node::Simple
-  def method_missing(meth, *args, &block)
-    begin
-      base.send(meth, *args)
-    rescue NotImplementedError
-      body_as_simple_node.send(meth, *args)
-    end
+  # Tries to send to `base` first. If an NotImplementedError is hit because
+  # some finders/matchers/etc. aren't implemented, fall back to treating the
+  # message body as a Capybara::Node::Simple
+  def method_missing(method_name, *args, &block)
+    base.send(method_name, *args)
+  rescue NotImplementedError
+    body_as_simple_node.send(method_name, *args)
+  end
+
+  def respond_to_missing?(method_name, include_private = false)
+    base.respond_to?(method_name, include_private) || super
   end
 end
