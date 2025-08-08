@@ -1,13 +1,20 @@
+## Unreleased
+
+  * Avoid modifying frozen strings ([yuri-zubov][yuri-zubov])
+
 ## 3.0.0
 
-* Update for Capybara 3 compatibility
+  * Update for Capybara 3 compatibility
 
 ## 2.4.0
 
-* Updated Capybara
+  * Updated Capybara
 
 ## 2.3.0
 
-* Adds `Capybara::Node::Email#header` and `Capybara::Node::Email#headers` for retrieving optional headers set on an email.
-* Corrects `inspect` of `Capybara::Node::Email` 
-* Delegate all missing methods in `Capybara::Node::Email` to `base.email`
+  * Adds `Capybara::Node::Email#header` and `Capybara::Node::Email#headers` for
+    retrieving optional headers set on an email.
+  * Corrects `inspect` of `Capybara::Node::Email`
+  * Delegate all missing methods in `Capybara::Node::Email` to `base.email`
+
+[yuri-zubov]: https://github.com/yuri-zubov
