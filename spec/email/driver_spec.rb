@@ -1,16 +1,17 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 class TestApp
-  def self.call(env)
-    [200, {'Content-Type' => 'text/plain'}, ['Hello world!']]
+  def self.call(_env)
+    [200, { 'Content-Type' => 'text/plain' }, ['Hello world!']]
   end
 end
 
 feature 'Integration test' do
   background do
     clear_email
-    Capybara.app = ::TestApp
+    Capybara.app = TestApp
   end
 
   scenario 'html email' do
@@ -29,7 +30,7 @@ feature 'Integration test' do
   end
 
   scenario 'html email follows links' do
-    email = deliver(html_email)
+    deliver(html_email)
     open_email('test@example.com')
 
     current_email.click_link 'example'
@@ -43,7 +44,7 @@ feature 'Integration test' do
   end
 
   scenario 'html email follows links via click_on' do
-    email = deliver(html_email)
+    deliver(html_email)
     open_email('test@example.com')
 
     current_email.click_on 'example'
@@ -80,7 +81,7 @@ feature 'Integration test' do
   end
 
   it 'delegates to base' do
-    email = deliver(plain_email)
+    deliver(plain_email)
     open_email('test@example.com')
     expect(current_email.subject).to eq 'Test Email'
   end
@@ -116,9 +117,9 @@ feature 'Integration test' do
   end
 
   scenario 'email content matchers' do
-    email = deliver(multipart_email)
+    deliver(multipart_email)
     open_email('test@example.com')
-    expect(current_email).to have_link('another example', :href => 'http://example.com:1234')
+    expect(current_email).to have_link('another example', href: 'http://example.com:1234')
   end
 
   scenario 'via ActionMailer' do
@@ -141,19 +142,19 @@ feature 'Integration test' do
 
   scenario 'multiple emails' do
     deliver(plain_email)
-    deliver(Mail::Message.new(:to => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
+    deliver(Mail::Message.new(to: 'test@example.com', body: 'New Message', context: 'text/plain'))
     open_email('test@example.com')
     expect(current_email.body).to eq 'New Message'
   end
 
   scenario "cc'd" do
-    deliver(Mail::Message.new(:cc => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
+    deliver(Mail::Message.new(cc: 'test@example.com', body: 'New Message', context: 'text/plain'))
     open_email('test@example.com')
     expect(current_email.body).to eq 'New Message'
   end
 
   scenario "bcc'd" do
-    deliver(Mail::Message.new(:bcc => 'test@example.com', :body => 'New Message', :context => 'text/plain'))
+    deliver(Mail::Message.new(bcc: 'test@example.com', body: 'New Message', context: 'text/plain'))
     open_email('test@example.com')
     expect(current_email.body).to eq 'New Message'
   end
@@ -165,25 +166,35 @@ def deliver(email)
 end
 
 def html_email
-  Mail::Message.new(:body => <<-HTML, :content_type => 'text/html', :to => 'test@example.com')
-<html>
-  <body>
-    <p>
-      This is only a html test.
-      <a href="http://example.com">example</a>
-      <a href="http://example.com:1234">another example</a>
-      <a href="http://example.com:1234/some/path?foo=bar">yet another example</a>
-    </p>
-  </body>
-</html>
-  HTML
+  Mail::Message.new(
+    body: <<~HTML,
+      <html>
+        <body>
+          <p>
+            This is only a html test.
+            <a href="http://example.com">example</a>
+            <a href="http://example.com:1234">another example</a>
+            <a href="http://example.com:1234/some/path?foo=bar">yet another example</a>
+          </p>
+        </body>
+      </html>
+    HTML
+    content_type: 'text/html',
+    to: 'test@example.com',
+  )
 end
 
 def plain_email
-  Mail::Message.new(:body => <<-PLAIN, :content_type => 'text/plain', :to => 'test@example.com', :from => 'sender@example.com', :subject => 'Test Email')
-This is only a plain test.
-http://example.com
-  PLAIN
+  Mail::Message.new(
+    body: <<-PLAIN,
+      This is only a plain test.
+      http://example.com
+    PLAIN
+    content_type: 'text/plain',
+    to: 'test@example.com',
+    from: 'sender@example.com',
+    subject: 'Test Email',
+  )
 end
 
 def multipart_email

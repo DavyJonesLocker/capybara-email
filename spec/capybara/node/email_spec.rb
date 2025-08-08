@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Capybara::Node::Email do
   let(:message) { Mail::Message.new }
-  let(:email) { Capybara::Node::Email.new(nil, Capybara::Email::Driver.new(message)) }
+  let(:email) { described_class.new(nil, Capybara::Email::Driver.new(message)) }
 
   describe '#body' do
-    context 'html' do
+    context 'with HTML' do
       before do
         message.content_type = 'text/html'
         message.body = '<a href="http://example.com">example</a>'
@@ -17,7 +18,7 @@ describe Capybara::Node::Email do
       end
     end
 
-    context 'plain' do
+    context 'with plaintext' do
       before do
         message.content_type = 'text/plain'
         message.body = 'http://example.com'
@@ -102,8 +103,9 @@ describe Capybara::Node::Email do
     end
 
     it 'delegates to the base' do
-      expect(email.headers).to include 'first-key'
-      expect(email.headers).to include 'second-key'
+      expect(email.headers)
+        .to include('first-key')
+        .and include('second-key')
     end
   end
 

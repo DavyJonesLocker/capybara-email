@@ -1,10 +1,12 @@
 # frozen_string_literal: true
+
 require 'rubygems'
 require 'bundler/setup'
 
 begin
   require 'byebug'
 rescue LoadError
+  # do nothing
 end
 
 RSpec.configure do |config|

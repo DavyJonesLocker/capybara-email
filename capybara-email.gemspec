@@ -1,24 +1,23 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/capybara/email/version', __FILE__)
+# frozen_string_literal: true
+
+require File.expand_path('lib/capybara/email/version', __dir__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ['Brian Cardarella']
-  gem.email         = %w(bcardarella@gmail.com brian@dockyard.com)
-  gem.description   = %q{Test your ActionMailer and Mailer messages in Capybara}
-  gem.summary       = %q{Test your ActionMailer and Mailer messages in Capybara}
-  gem.homepage      = 'https://github.com/dockyard/capybara-email'
-  gem.license       = 'MIT'
+  gem.authors = ['Brian Cardarella']
+  gem.email = %w[bcardarella@gmail.com brian@dockyard.com]
+  gem.description = 'Test your ActionMailer and Mailer messages in Capybara'
+  gem.summary = 'Test your ActionMailer and Mailer messages in Capybara'
+  gem.homepage = 'https://github.com/dockyard/capybara-email'
+  gem.license = 'MIT'
+  gem.required_ruby_version = '>= 2.7'
 
-  gem.files         = Dir['lib/**/*.rb', 'LICENSE', 'README.md']
-  gem.test_files    = Dir['spec/**/*.rb']
-  gem.name          = 'capybara-email'
+  gem.files = Dir['lib/**/*.rb', 'LICENSE', 'README.md']
+  gem.name = 'capybara-email'
   gem.require_paths = ['lib']
-  gem.version       = Capybara::Email::VERSION
+  gem.version = Capybara::Email::VERSION
 
-  gem.add_dependency 'mail'
   gem.add_dependency 'capybara', '>= 2.4', '< 4.0'
-  gem.add_development_dependency 'actionmailer', '> 3.0'
-  gem.add_development_dependency 'bourne'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'rake'
+  gem.add_dependency 'mail'
+
+  gem.metadata['rubygems_mfa_required'] = 'true'
 end

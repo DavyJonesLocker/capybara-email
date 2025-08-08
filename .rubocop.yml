@@ -1,0 +1,38 @@
+---
+plugins:
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Lint/DuplicateBranch:
+  IgnoreLiteralBranches: true
+
+Naming/FileName:
+  Exclude:
+    - 'lib/capybara-email.rb'
+
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+
+Metrics/MethodLength:
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
+  Max: 15
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+
+Style/Documentation:
+  Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
